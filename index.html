@@ -8,22 +8,24 @@
   <script src="script.js"></script>
 </head>
 <body>
-  <pre>
-    welcome to rock paper scissors
-    what do you chose
-  </pre>
+  <h1>WELCOME TO ROCK PAPER SCISSORS</h1>
+
   <div class="game">
-    <button onclick="move = plyrMove('rock');
-    setOuput(move)">
-      rock <!--we call a func and pass aparam -->
+    <p class="html-text">what do you chose</p>
+
+    <button class="button" onclick="move = plyrMove('rock');
+      setOuput(move)"> <!--we call a func and pass aparam -->
+     <img src="img/rock-emoji.png" alt="rock-img">
     </button>
-    <button onclick="move = plyrMove('paper');
-    setOuput(move)">
-      paper
+
+    <button class="button" onclick="move = plyrMove('paper');
+      setOuput(move)">
+     <img src="img/paper-emoji.png" alt="paper-img">
     </button>
-    <button onclick="move = plyrMove('scissors');
-    setOuput(move)">
-      scissors
+
+    <button class="button" onclick="move = plyrMove('scissors');
+      setOuput(move)">
+     <img src="img/scissors-emoji.png" alt="scissors-img">
     </button>
 
     <p class="js-result">result</p>
@@ -31,16 +33,58 @@
     <p class="js-scores">scores</p>
 
 
-    <button onclick="
+    <button class="reset-btn" onclick="
       score.wins = 0;
       score.lose = 0;
       score.ties = 0;
       localStorage.removeItem(key);
-      document.querySelector('.js-scores').innerHTML = JSON.stringify(score)
+      document.querySelector('.js-scores').innerHTML = JSON.stringify(score);
     ">
       Reset Score <!--resets the object 'score' to default and clears local storage-->
     </button>
   </div>
+
+  <style>
+   body{
+    background-color: black;
+    color: white;
+    /* box-sizing: border-box; */
+   }
+  .game{
+    font-size: 20px;
+    align-content: center;
+    /* border: solid; */
+    margin: 50px;
+   }
+  .reset-btn{
+    color: white;
+    background-color: rgb(146, 144, 15);
+    border: 2px solid white;
+    height: 50px;
+    width: 200px;
+    font-size: 25px;
+    border-radius: 15px;
+
+  }
+  .button{
+    background-color: transparent;
+    border: 5px solid white;
+    margin: 5px;
+    padding: 25px;
+    border-radius: 80px;
+    cursor: pointer;
+  }
+  img{
+    width: 100px;
+    height: 100px;
+  }
+  .img{
+    width: 50px;
+    height: 50px;
+  }
+
+  </style>  
+
 
   <script>
 
@@ -84,10 +128,10 @@
         console.log('reached 2nd if')
       }
       //...sets default 
-      result = existingScore || core;
-      console.log(result)
+      scores = existingScore || core;
+      console.log(scores)
 
-      return result
+      return scores
  
     }
 
@@ -107,71 +151,71 @@
       if (playerMove ==='rock') {
         if (computerMove ==='rock') {
           score.ties +=1;
-          result = saveToLocalStorage(score);
+          scores = saveToLocalStorage(score);
           htmlResult.innerHTML = 'its a tie';
-          htmlScore.innerHTML = JSON.stringify(result)
+          htmlScore.innerHTML = JSON.stringify(scores)
 
         } else if (computerMove === 'paper') {
           score.lose +=1;
-          result = saveToLocalStorage(score);
+          scores = saveToLocalStorage(score);
           htmlResult.innerHTML = 'you lose';
-          htmlScore.innerHTML = JSON.stringify(result)          
+          htmlScore.innerHTML = JSON.stringify(scores);
 
         } else {
           score.wins +=1;
-          result = saveToLocalStorage(score);
+          scores = saveToLocalStorage(score);
           htmlResult.innerHTML = 'you won';
-          htmlScore.innerHTML = JSON.stringify(result)    
+          htmlScore.innerHTML = JSON.stringify(scores);
         }
 
       } else if (playerMove === 'paper') {
         if (computerMove ==='rock') {
           score.wins +=1;
-          result = saveToLocalStorage(score);
+          scores = saveToLocalStorage(score);
           htmlResult.innerHTML ='you won';
-          htmlScore.innerHTML = JSON.stringify(result)
+          htmlScore.innerHTML = JSON.stringify(scores);
 
         } else if (computerMove === 'paper') {
           score.ties +=1;
-          result = saveToLocalStorage(score);
+          scores = saveToLocalStorage(score);
           htmlResult.innerHTML = 'its a tie';
-          htmlScore.innerHTML = JSON.stringify(result)
+          htmlScore.innerHTML = JSON.stringify(scores);
 
         } else {
           score.lose +=1;
-          result = saveToLocalStorage(score);
+          scores = saveToLocalStorage(score);
           htmlResult.innerHTML = 'you lose';
-          htmlScore.innerHTML = JSON.stringify(result)
+          htmlScore.innerHTML = JSON.stringify(scores);
         }
 
       } else if (playerMove === 'scissors') {
         if (computerMove === 'rock') {
           score.lose +=1;
-          result = saveToLocalStorage(score);
+          scores = saveToLocalStorage(score);
           htmlResult.innerHTML = 'you lose';
-          htmlScore.innerHTML = JSON.stringify(result)
+          htmlScore.innerHTML = JSON.stringify(scores);
 
         } else if (computerMove === 'paper') {
           score.wins +=1;
-          result = saveToLocalStorage(score);
+          scores = saveToLocalStorage(score);
           htmlResult.innerHTML = 'you won';
-          htmlScore.innerHTML = JSON.stringify(result)
+          htmlScore.innerHTML = JSON.stringify(scores);
 
         } else {
           score.ties +=1;
-          result = saveToLocalStorage(score);
+          scores = saveToLocalStorage(score);
           htmlResult.innerHTML = 'its a tie';
-          htmlScore.innerHTML = JSON.stringify(result)
+          htmlScore.innerHTML = JSON.stringify(scores);
 
         }
       }
 
 
-
-      return `plyr = ${playerMove} comp = ${computerMove}`;
+      // updates img src and rtrns templt string with img elem
+      return `plyr = <img class="img" src="img/${playerMove}-emoji.png" alt="${playerMove}"> <img class="img" src="img/${computerMove}-emoji.png" alt="${compMove}"> = comp`;
     }
 
-    //...updates scoreselement
+    //...updates scores element
     function setOuput(move, ) {
       document.querySelector('.js-moves').innerHTML = move;
 
