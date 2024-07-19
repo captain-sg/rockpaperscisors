@@ -5,18 +5,12 @@
    }
    h1{
     margin-bottom: 0px;
-    border: solid;
-   }
-   .html-text{
-    borde
-    margin-top: 0px;
-    margin-bottom: 50px;
-   }
+    }
   .game{
     font-size: 20px;
     align-content: center;
     /* border: solid; */
-    margin: 50px;
+    margin: 10px 50px;
    }
   .reset-btn{
     color: white;
